@@ -60,7 +60,7 @@ void config_tmr0();             // Configurar TMR0
 void config_int_enable();       // Enable interrupciones
 
 //******************************************************************************
-//  Variables
+// Variables
 //******************************************************************************
 uint8_t contador;               // Contador binario
 uint8_t decena;                 // Decena del display

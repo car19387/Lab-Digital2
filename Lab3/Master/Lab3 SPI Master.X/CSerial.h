@@ -1,6 +1,6 @@
 /* 
  * File: ComSerial.h  
- * Author: Jose Alvarez
+ * Author: Jefry Carrasco
  * Comments:
  * Creado: 21 de Julio 2021
  * Revision history: 23 de julio 2021

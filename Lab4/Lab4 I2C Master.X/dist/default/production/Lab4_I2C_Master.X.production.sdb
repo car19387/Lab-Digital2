@@ -1,0 +1,450 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F887 ]
+[d frameptr 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\__lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"43 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\fltol.c
+[v ___fltol __fltol `(l  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"242
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\Umul8.c
+[v ___bmul __bmul `(uc  1 e 1 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\xxtofl.c
+[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
+"6 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\pic\__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"76 C:\Users\jefca\Downloads\6 semestre\Electrónica digital 2\GitHub\Lab-Digital2\Lab4\Lab4 I2C Master.X\I2C Main.c
+[v _main main `(v  1 e 1 0 ]
+"145
+[v _config config `(v  1 e 1 0 ]
+"166
+[v _floTochar floTochar `(v  1 e 1 0 ]
+"187
+[v _division division `(v  1 e 1 0 ]
+"199
+[v _hexTochar hexTochar `(v  1 e 1 0 ]
+"211
+[v _hexTocharNEG hexTocharNEG `(v  1 e 1 0 ]
+"235
+[v _divisiondecimal divisiondecimal `(v  1 e 1 0 ]
+"16 C:\Users\jefca\Downloads\6 semestre\Electrónica digital 2\GitHub\Lab-Digital2\Lab4\Lab4 I2C Master.X\I2C.c
+[v _MasterInit_I2C MasterInit_I2C `(v  1 e 1 0 ]
+"26
+[v _waitCondition waitCondition `(v  1 e 1 0 ]
+"32
+[v _MasterStart_I2C MasterStart_I2C `(v  1 e 1 0 ]
+"37
+[v _MasterStop_I2C MasterStop_I2C `(v  1 e 1 0 ]
+"42
+[v _MasterRepeatS_I2C MasterRepeatS_I2C `(v  1 e 1 0 ]
+"47
+[v _MasterSend_I2C MasterSend_I2C `(v  1 e 1 0 ]
+"52
+[v _MasterReceive_I2C MasterReceive_I2C `(v  1 e 1 0 ]
+"25 C:\Users\jefca\Downloads\6 semestre\Electrónica digital 2\GitHub\Lab-Digital2\Lab4\Lab4 I2C Master.X\LCD.c
+[v _initLCD initLCD `(v  1 e 1 0 ]
+"44
+[v _dispCHAR dispCHAR `(v  1 e 1 0 ]
+"54
+[v _cursorLCD cursorLCD `(v  1 e 1 0 ]
+"67
+[v _comandoLCD comandoLCD `(v  1 e 1 0 ]
+"79
+[v _LCDstring LCDstring `(v  1 e 1 0 ]
+"166 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"228
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"352
+[v _PORTD PORTD `VEuc  1 e 1 @8 ]
+"414
+[v _PORTE PORTE `VEuc  1 e 1 @9 ]
+"843
+[v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
+"850
+[v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
+"1416
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"1478
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+[s S196 . 1 `uc 1 TRISC0 1 0 :1:0 
+`uc 1 TRISC1 1 0 :1:1 
+`uc 1 TRISC2 1 0 :1:2 
+`uc 1 TRISC3 1 0 :1:3 
+`uc 1 TRISC4 1 0 :1:4 
+`uc 1 TRISC5 1 0 :1:5 
+`uc 1 TRISC6 1 0 :1:6 
+`uc 1 TRISC7 1 0 :1:7 
+]
+"1557
+[u S205 . 1 `S196 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES205  1 e 1 @135 ]
+"1602
+[v _TRISD TRISD `VEuc  1 e 1 @136 ]
+"1664
+[v _TRISE TRISE `VEuc  1 e 1 @137 ]
+[s S96 . 1 `uc 1 SCS 1 0 :1:0 
+`uc 1 LTS 1 0 :1:1 
+`uc 1 HTS 1 0 :1:2 
+`uc 1 OSTS 1 0 :1:3 
+`uc 1 IRCF 1 0 :3:4 
+]
+"1882
+[s S102 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 IRCF0 1 0 :1:4 
+`uc 1 IRCF1 1 0 :1:5 
+`uc 1 IRCF2 1 0 :1:6 
+]
+[u S107 . 1 `S96 1 . 1 0 `S102 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES107  1 e 1 @143 ]
+"1979
+[v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
+[s S217 . 1 `uc 1 SEN 1 0 :1:0 
+`uc 1 RSEN 1 0 :1:1 
+`uc 1 PEN 1 0 :1:2 
+`uc 1 RCEN 1 0 :1:3 
+`uc 1 ACKEN 1 0 :1:4 
+`uc 1 ACKDT 1 0 :1:5 
+`uc 1 ACKSTAT 1 0 :1:6 
+`uc 1 GCEN 1 0 :1:7 
+]
+"1996
+[u S226 . 1 `S217 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES226  1 e 1 @145 ]
+"2048
+[v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
+"2177
+[v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
+"3387
+[v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
+"3449
+[v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
+"4205
+[v _RE0 RE0 `VEb  1 e 0 @72 ]
+"4208
+[v _RE1 RE1 `VEb  1 e 0 @73 ]
+"65 C:\Users\jefca\Downloads\6 semestre\Electrónica digital 2\GitHub\Lab-Digital2\Lab4\Lab4 I2C Master.X\I2C Main.c
+[v _DatS1 DatS1 `uc  1 e 1 0 ]
+"66
+[v _DatS2 DatS2 `uc  1 e 1 0 ]
+"67
+[v _DatS3 DatS3 `uc  1 e 1 0 ]
+"68
+[v _lect1 lect1 `f  1 e 4 0 ]
+"69
+[v _disp1 disp1 `[3]uc  1 e 3 0 ]
+"70
+[v _disp2 disp2 `[3]uc  1 e 3 0 ]
+"71
+[v _disp3 disp3 `[3]uc  1 e 3 0 ]
+"76
+[v _main main `(v  1 e 1 0 ]
+{
+"140
+} 0
+"25 C:\Users\jefca\Downloads\6 semestre\Electrónica digital 2\GitHub\Lab-Digital2\Lab4\Lab4 I2C Master.X\LCD.c
+[v _initLCD initLCD `(v  1 e 1 0 ]
+{
+"39
+} 0
+"211 C:\Users\jefca\Downloads\6 semestre\Electrónica digital 2\GitHub\Lab-Digital2\Lab4\Lab4 I2C Master.X\I2C Main.c
+[v _hexTocharNEG hexTocharNEG `(v  1 e 1 0 ]
+{
+[v hexTocharNEG@valor valor `uc  1 a 1 wreg ]
+"216
+[v hexTocharNEG@decena decena `uc  1 a 1 11 ]
+"217
+[v hexTocharNEG@unidad unidad `uc  1 a 1 10 ]
+"215
+[v hexTocharNEG@centena centena `uc  1 a 1 9 ]
+"218
+[v hexTocharNEG@temporal temporal `uc  1 a 1 7 ]
+"211
+[v hexTocharNEG@valor valor `uc  1 a 1 wreg ]
+[v hexTocharNEG@conv conv `*.4uc  1 p 1 3 ]
+"219
+[v hexTocharNEG@valor valor `uc  1 a 1 8 ]
+"232
+} 0
+"199
+[v _hexTochar hexTochar `(v  1 e 1 0 ]
+{
+[v hexTochar@valor valor `uc  1 a 1 wreg ]
+"201
+[v hexTochar@decena decena `uc  1 a 1 10 ]
+"200
+[v hexTochar@centena centena `uc  1 a 1 9 ]
+"202
+[v hexTochar@unidad unidad `uc  1 a 1 8 ]
+"199
+[v hexTochar@valor valor `uc  1 a 1 wreg ]
+[v hexTochar@conv conv `*.4uc  1 p 1 3 ]
+"204
+[v hexTochar@valor valor `uc  1 a 1 7 ]
+"209
+} 0
+"235
+[v _divisiondecimal divisiondecimal `(v  1 e 1 0 ]
+{
+[v divisiondecimal@conteo conteo `uc  1 a 1 wreg ]
+"236
+[v divisiondecimal@div div `uc  1 a 1 13 ]
+"235
+[v divisiondecimal@conteo conteo `uc  1 a 1 wreg ]
+[v divisiondecimal@uni uni `*.4uc  1 p 1 9 ]
+[v divisiondecimal@dec dec `*.4uc  1 p 1 10 ]
+[v divisiondecimal@cent cent `*.4uc  1 p 1 11 ]
+[v divisiondecimal@conteo conteo `uc  1 a 1 12 ]
+"250
+} 0
+"166
+[v _floTochar floTochar `(v  1 e 1 0 ]
+{
+"169
+[v floTochar@temp temp `f  1 a 4 46 ]
+"170
+[v floTochar@digdecimal digdecimal `[2]uc  1 a 2 52 ]
+"167
+[v floTochar@entero entero `uc  1 a 1 51 ]
+"168
+[v floTochar@decimal decimal `uc  1 a 1 50 ]
+"166
+[v floTochar@valor valor `DCf  1 p 4 37 ]
+[v floTochar@conv conv `*.4uc  1 p 1 41 ]
+"184
+} 0
+"187
+[v _division division `(v  1 e 1 0 ]
+{
+[v division@conteo conteo `uc  1 a 1 wreg ]
+"188
+[v division@div div `uc  1 a 1 1 ]
+"187
+[v division@conteo conteo `uc  1 a 1 wreg ]
+[v division@uni uni `*.4uc  1 p 1 9 ]
+[v division@dec dec `*.4uc  1 p 1 10 ]
+[v division@conteo conteo `uc  1 a 1 0 ]
+"197
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\Umul8.c
+[v ___bmul __bmul `(uc  1 e 1 0 ]
+{
+[v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+"6
+[v ___bmul@product product `uc  1 a 1 2 ]
+"4
+[v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+[v ___bmul@multiplicand multiplicand `uc  1 p 1 0 ]
+"6
+[v ___bmul@multiplier multiplier `uc  1 a 1 3 ]
+"51
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 7 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 6 ]
+[v ___awdiv@counter counter `uc  1 a 1 5 ]
+"5
+[v ___awdiv@divisor divisor `i  1 p 2 0 ]
+[v ___awdiv@dividend dividend `i  1 p 2 2 ]
+"41
+} 0
+"10 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\xxtofl.c
+[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
+{
+[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
+"13
+[v ___xxtofl@arg arg `ul  1 a 4 10 ]
+"12
+[v ___xxtofl@exp exp `uc  1 a 1 9 ]
+"10
+[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
+[v ___xxtofl@val val `l  1 p 4 0 ]
+"15
+[v ___xxtofl@sign sign `uc  1 a 1 8 ]
+"44
+} 0
+"43 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\fltol.c
+[v ___fltol __fltol `(l  1 e 4 0 ]
+{
+"45
+[v ___fltol@exp1 exp1 `uc  1 a 1 36 ]
+[v ___fltol@sign1 sign1 `uc  1 a 1 35 ]
+"43
+[v ___fltol@f1 f1 `d  1 p 4 26 ]
+"70
+} 0
+"242 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\sprcadd.c
+[v ___flsub __flsub `(d  1 e 4 0 ]
+{
+[v ___flsub@a a `d  1 p 4 8 ]
+[v ___flsub@b b `d  1 p 4 12 ]
+"250
+} 0
+"10
+[v ___fladd __fladd `(d  1 e 4 0 ]
+{
+"17
+[v ___fladd@grs grs `uc  1 a 1 11 ]
+"15
+[v ___fladd@bexp bexp `uc  1 a 1 10 ]
+"16
+[v ___fladd@aexp aexp `uc  1 a 1 9 ]
+"13
+[v ___fladd@signs signs `uc  1 a 1 8 ]
+"10
+[v ___fladd@b b `d  1 p 4 0 ]
+[v ___fladd@a a `d  1 p 4 4 ]
+"237
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+{
+[s S588 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+"13
+[s S593 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S596 . 4 `l 1 i 4 0 `d 1 f 4 0 `S588 1 fAsBytes 4 0 `S593 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S596  1 a 4 20 ]
+"12
+[v ___flmul@grs grs `ul  1 a 4 14 ]
+[s S665 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+"14
+[u S668 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S665 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S668  1 a 2 24 ]
+"10
+[v ___flmul@bexp bexp `uc  1 a 1 19 ]
+"11
+[v ___flmul@aexp aexp `uc  1 a 1 18 ]
+"9
+[v ___flmul@sign sign `uc  1 a 1 13 ]
+"8
+[v ___flmul@b b `d  1 p 4 0 ]
+[v ___flmul@a a `d  1 p 4 4 ]
+"205
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+{
+[v __Umul8_16@multiplier multiplier `uc  1 a 1 wreg ]
+"6
+[v __Umul8_16@word_mpld word_mpld `ui  1 a 2 6 ]
+"5
+[v __Umul8_16@product product `ui  1 a 2 4 ]
+"4
+[v __Umul8_16@multiplier multiplier `uc  1 a 1 wreg ]
+[v __Umul8_16@multiplicand multiplicand `uc  1 p 1 0 ]
+[v __Umul8_16@multiplier multiplier `uc  1 a 1 8 ]
+"60
+} 0
+"54 C:\Users\jefca\Downloads\6 semestre\Electrónica digital 2\GitHub\Lab-Digital2\Lab4\Lab4 I2C Master.X\LCD.c
+[v _cursorLCD cursorLCD `(v  1 e 1 0 ]
+{
+[v cursorLCD@fila fila `uc  1 a 1 wreg ]
+"55
+[v cursorLCD@temp temp `uc  1 a 1 6 ]
+"54
+[v cursorLCD@fila fila `uc  1 a 1 wreg ]
+[v cursorLCD@columna columna `uc  1 p 1 3 ]
+"56
+[v cursorLCD@fila fila `uc  1 a 1 5 ]
+"65
+} 0
+"67
+[v _comandoLCD comandoLCD `(v  1 e 1 0 ]
+{
+[v comandoLCD@cmd cmd `uc  1 a 1 wreg ]
+[v comandoLCD@cmd cmd `uc  1 a 1 wreg ]
+[v comandoLCD@cmd cmd `uc  1 a 1 2 ]
+"73
+} 0
+"145 C:\Users\jefca\Downloads\6 semestre\Electrónica digital 2\GitHub\Lab-Digital2\Lab4\Lab4 I2C Master.X\I2C Main.c
+[v _config config `(v  1 e 1 0 ]
+{
+"164
+} 0
+"16 C:\Users\jefca\Downloads\6 semestre\Electrónica digital 2\GitHub\Lab-Digital2\Lab4\Lab4 I2C Master.X\I2C.c
+[v _MasterInit_I2C MasterInit_I2C `(v  1 e 1 0 ]
+{
+[v MasterInit_I2C@frec frec `ul  1 p 4 0 ]
+"24
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\__lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+{
+"10
+[v ___lldiv@quotient quotient `ul  1 a 4 9 ]
+"11
+[v ___lldiv@counter counter `uc  1 a 1 13 ]
+"5
+[v ___lldiv@divisor divisor `ul  1 p 4 0 ]
+[v ___lldiv@dividend dividend `ul  1 p 4 4 ]
+"30
+} 0
+"37 C:\Users\jefca\Downloads\6 semestre\Electrónica digital 2\GitHub\Lab-Digital2\Lab4\Lab4 I2C Master.X\I2C.c
+[v _MasterStop_I2C MasterStop_I2C `(v  1 e 1 0 ]
+{
+"40
+} 0
+"32
+[v _MasterStart_I2C MasterStart_I2C `(v  1 e 1 0 ]
+{
+"35
+} 0
+"47
+[v _MasterSend_I2C MasterSend_I2C `(v  1 e 1 0 ]
+{
+[v MasterSend_I2C@dato dato `uc  1 a 1 wreg ]
+[v MasterSend_I2C@dato dato `uc  1 a 1 wreg ]
+[v MasterSend_I2C@dato dato `uc  1 a 1 0 ]
+"50
+} 0
+"42
+[v _MasterRepeatS_I2C MasterRepeatS_I2C `(v  1 e 1 0 ]
+{
+"45
+} 0
+"52
+[v _MasterReceive_I2C MasterReceive_I2C `(v  1 e 1 0 ]
+{
+[v MasterReceive_I2C@valor valor `*.4uc  1 a 1 wreg ]
+[v MasterReceive_I2C@valor valor `*.4uc  1 a 1 wreg ]
+[v MasterReceive_I2C@valor valor `*.4uc  1 a 1 1 ]
+"61
+} 0
+"26
+[v _waitCondition waitCondition `(v  1 e 1 0 ]
+{
+"30
+} 0
+"79 C:\Users\jefca\Downloads\6 semestre\Electrónica digital 2\GitHub\Lab-Digital2\Lab4\Lab4 I2C Master.X\LCD.c
+[v _LCDstring LCDstring `(v  1 e 1 0 ]
+{
+[v LCDstring@mensaje mensaje `*.24uc  1 a 1 wreg ]
+[v LCDstring@mensaje mensaje `*.24uc  1 a 1 wreg ]
+[v LCDstring@mensaje mensaje `*.24uc  1 a 1 3 ]
+"84
+} 0
+"44
+[v _dispCHAR dispCHAR `(v  1 e 1 0 ]
+{
+[v dispCHAR@b b `uc  1 a 1 wreg ]
+[v dispCHAR@b b `uc  1 a 1 wreg ]
+"46
+[v dispCHAR@b b `uc  1 a 1 1 ]
+"52
+} 0
