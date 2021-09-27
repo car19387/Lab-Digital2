@@ -2625,7 +2625,6 @@ typedef int16_t intptr_t;
 typedef uint16_t uintptr_t;
 # 16 "P1 Slave3 HC-SR04.c" 2
 
-
 # 1 "./I2C.h" 1
 # 20 "./I2C.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 1 3
@@ -2667,7 +2666,7 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 
 void I2C_Slave_Init(uint8_t address);
-# 18 "P1 Slave3 HC-SR04.c" 2
+# 17 "P1 Slave3 HC-SR04.c" 2
 
 
 
@@ -2689,9 +2688,10 @@ void I2C_Slave_Init(uint8_t address);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 48 "P1 Slave3 HC-SR04.c"
+# 47 "P1 Slave3 HC-SR04.c"
 uint16_t duracion;
 uint8_t distancia;
+uint8_t tnk;
 uint8_t z;
 
 
@@ -2712,16 +2712,19 @@ void main(void) {
 
 
     while(1){
-        PORTBbits.RB2 = 0;
         pulseOut();
         pulseIn();
         duracion = TMR1;
         distancia = (duracion)/58;
 
-        if(distancia > 32){
-            PORTBbits.RB2 = ~PORTBbits.RB2;
+        if(distancia >= 40 && distancia <= 44){
+            distancia = 40;
+            PORTBbits.RB2 = 1;
             _delay((unsigned long)((500)*(8000000/4000.0)));
+            PORTBbits.RB2 = 0;
+            _delay((unsigned long)((750)*(8000000/4000.0)));
         }
+        tnk = 100-((distancia-3)*2.702);
     }
     return;
 }
@@ -2751,7 +2754,7 @@ void __attribute__((picinterrupt((""))))isr(void){
         else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
             z = SSPBUF;
             BF = 0;
-            SSPBUF = distancia;
+            SSPBUF = tnk;
             SSPCONbits.CKP = 1;
             _delay((unsigned long)((250)*(8000000/4000000.0)));
             while(SSPSTATbits.BF);

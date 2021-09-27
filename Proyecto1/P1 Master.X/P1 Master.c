@@ -14,6 +14,8 @@
 //******************************************************************************
 #include <xc.h>
 #include <stdint.h>
+#include <stdio.h>
+#include <string.h>
 #include "I2C.h"
 #include "LCD.h"
 
@@ -48,12 +50,16 @@
 // Variables
 //******************************************************************************
 uint16_t Luz;                   // Valor de fotoresistencia
-uint8_t CC;                     // Cantidad de Coca Cola
-uint8_t Sp;                     // Cantidad de Sprite
+uint8_t CC ;                     // Cantidad de Coca Cola
+uint8_t Sp ;                     // Cantidad de Sprite
 uint8_t Tnk = 5;                // Gaseosas en el tanque
 uint8_t Unidad;                 // Para conversion a decimal
 uint8_t Decena;
 uint8_t Centena;
+unsigned char opcion;
+unsigned char LZ[2];
+char i; 
+uint8_t distancia; 
 
 //******************************************************************************
 // Prototipos de funciones
@@ -123,6 +129,8 @@ void main(void) {
         
         Luz = Luz/2.57;             // Conversion del valor del luz a 99%
         Decimal(Luz);               // Conversion a decimal
+        LZ[0] = Decena;
+        LZ[1] = Unidad; 
         Lcd_Write_Char(Decena);
         Lcd_Write_Char(Unidad);
         Lcd_Write_String("%");
@@ -139,7 +147,8 @@ void main(void) {
         Decimal(Tnk);               // Conversion a decimal
         Lcd_Write_Char(Centena);
         Lcd_Write_Char(Decena);
-        Lcd_Write_Char(Unidad); 
+        Lcd_Write_Char(Unidad);
+        
     }
     return;
 }
@@ -148,7 +157,32 @@ void main(void) {
 // Interrupciones
 //******************************************************************************
 void __interrupt()isr(void){
-    
+    //interrucion por recepcion de informacion USART 
+    if (RCIF == 1) {
+        opcion = RCREG;        // lo que reciba de la PC lo pongo en la variable
+        switch (opcion) {
+            case('a'):              // enviando cantidad de cocacola 
+                TXREG = (CC+ 48); 
+            break;
+            case('b'):
+                TXREG = (CC + 48); // enviando cantidad de sprite 
+            break;
+            case('c'): 
+                distancia = (Tnk/7);         // enviando la cantidad de espacios 
+                TXREG = (distancia + 48);    // disponibles   
+            break;
+            case('d'): 
+                for (i = 0; i < strlen(LZ); i++) {
+                __delay_ms(100);
+                    if (TXIF == 1) {          // envio el porcentaje de intensidad 
+                        TXREG = LZ[i];        // de luz del ambiente 
+                    }
+                }
+            break;    
+        }
+        RCIF = 0;             // bajo la bandera
+    }
+    return;
 }
 
 //******************************************************************************
@@ -161,7 +195,7 @@ void setup(void){
     
     TRISA = 0x00;               // Puertos como salida
     TRISB = 0x00;
-    TRISC = 0x00; 
+    TRISC = 0b10000000;
     TRISD = 0x00; 
     TRISE = 0x00; 
     
@@ -176,9 +210,26 @@ void setup(void){
     OSCCONbits.SCS = 1;         // Habilitar reloj interno
     I2C_Master_Init(100000);    // Comunicación I2C a 100KHz
     
+    // configuracion para comunicacion USART 
+    TXSTAbits.TX9 = 0; 
+    TXSTAbits.TXEN = 1;   // configuracion de registro TXSTA 
+    TXSTAbits.SYNC = 0; 
+    TXSTAbits.BRGH = 1; 
+
+    RCSTAbits.SPEN = 1; 
+    RCSTAbits.RX9 = 0;    // configuracion de registro RCSTA 
+    RCSTAbits.CREN = 1; 
+
+    BAUDCTLbits.BRG16 = 1;   // configuracion de registro BAUDCTL
+
+    SPBRG = 207; 
+    SPBRGH = 0;           // configurando que opere a 9600 BAULIOS 
+    
     // Configuracion de interrupciones
     INTCONbits.GIE = 1;         // Se habilitan las interrupciones globales
-    INTCONbits.PEIE = 0;        // Se habilitan las interrupciones perifericas        
+    INTCONbits.PEIE = 1;        // Se habilitan las interrupciones perifericas 
+    PIE1bits.RCIE = 1; 
+    PIR1bits.RCIF = 0;   // USART
 }
 
 //******************************************************************************

@@ -14,7 +14,6 @@
 //******************************************************************************
 #include <xc.h>
 #include <stdint.h>
-#include <proc/pic16f887.h>
 #include "I2C.h"
 
 //******************************************************************************
@@ -46,7 +45,8 @@
 // Variables
 //******************************************************************************
 uint16_t duracion;              // Duración del pulso                     
-uint8_t distancia;              // Distancia en cm                         ////////////////////////////////////////////////////////////////
+uint8_t distancia;              // Distancia en cm
+uint8_t tnk;                    // Nivel del tanque
 uint8_t z;                      // Envio de datos
 
 //******************************************************************************
@@ -60,27 +60,30 @@ void setup(void);               // Configuración
 // Main
 //******************************************************************************
 void main(void) {
-    setup();
-    TMR1 = 0;
+    setup();                    // Cinfiguración
+    TMR1 = 0;                   // Limpiar el registro TMR1
     
     //**************************************************************************
     // Loop principal
     //**************************************************************************
     while(1){
-        PORTBbits.RB2 = 0;      // Apagar alarma
-        pulseOut();             // Función para
-        pulseIn();              // 
-        duracion = TMR1;            // Se guarda el tiempo del puslo
+        pulseOut();                 // Función para enviar pulso ultrasonico
+        pulseIn();                  // Función para medir el tiempo de señal
+        duracion = TMR1;            // Guardadr el tiempo del pulso
         distancia = (duracion)/58;  // Conversion de tiempo a distancia    
         
-        if(distancia > 32){
-            PORTBbits.RB2 = ~PORTBbits.RB2;
-            __delay_ms(500);
+        if(distancia >= 40 && distancia <= 44){
+            distancia = 40;         // Se restringe maximo a 40
+            PORTBbits.RB2 = 1;      // Encender alarma
+            __delay_ms(500);        // Tiempo encendido
+            PORTBbits.RB2 = 0;      // Apagar alarma
+            __delay_ms(750);        // Tiempo apagada
         }
+        tnk = 100-((distancia-3)*2.702);    // Conversión para nivel de tanque
     }
     return;
 }    
-
+        
 //******************************************************************************
 // Interrupciones
 //******************************************************************************
@@ -106,7 +109,7 @@ void __interrupt()isr(void){
         else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
             z = SSPBUF;                 // Leer valor del buffer y limpiarlo
             BF = 0;
-            SSPBUF = distancia;         // Escribe valor de la variable al buffer
+            SSPBUF = tnk;               // Escribe valor de la variable al buffer
             SSPCONbits.CKP = 1;         // Habilita los pulsos del reloj SCL
             __delay_us(250);
             while(SSPSTATbits.BF);

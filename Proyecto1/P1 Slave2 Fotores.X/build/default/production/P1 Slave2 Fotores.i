@@ -2710,6 +2710,12 @@ void main(void) {
 
     while(1){
         if(ADCON0bits.GO == 0){
+            if (ADCON0bits.CHS == 0){
+                ADCON0bits.CHS = 1;
+            }
+            else {
+                ADCON0bits.CHS = 0;
+            }
             _delay((unsigned long)((50)*(8000000/4000000.0)));
             ADCON0bits.GO = 1;
         }
@@ -2751,10 +2757,16 @@ void __attribute__((picinterrupt((""))))isr(void){
     }
 
     if (PIR1bits.ADIF) {
-        Foto = ADRESH;
-        Foto = (Foto);
-        CCPR1L = Foto;
-        PIR1bits.ADIF = 0;
+        if(ADCON0bits.CHS == 0) {
+            Foto = ADRESH;
+            Foto = (Foto);
+            CCPR1L = Foto;
+        }
+        else {
+            PORTB = ADRESH;
+            CCPR2L = (PORTB);
+        }
+    PIR1bits.ADIF = 0;
     }
 }
 
@@ -2763,10 +2775,10 @@ void __attribute__((picinterrupt((""))))isr(void){
 
 void setup() {
 
-    ANSEL = 0x01;
+    ANSEL = 0x03;
     ANSELH = 0x00;
 
-    TRISA = 0x01;
+    TRISA = 0x03;
     TRISB = 0x00;
     TRISC = 0x08;
     TRISD = 0x00;
@@ -2791,19 +2803,23 @@ void setup() {
     ADCON0bits.CHS = 0;
     ADCON0bits.ADON = 1;
     _delay((unsigned long)((50)*(8000000/4000000.0)));
-    ADCON0bits.GO = 1;
 
 
-    PR2 = 250;
     CCP1CONbits.P1M = 0;
-    CCP1CONbits.CCP1M = 0b00001100;
-    CCPR1L = 0x0F;
-    CCP1CONbits.DC1B = 0;
+    CCP1CONbits.CCP1M = 0b1100;
+    CCP2CONbits.CCP2M = 0b1100;
 
-    PIR1bits.TMR2IF = 0;
+    CCPR1L = 0x0F;
+    CCPR2L = 0x0F;
+    CCP1CONbits.DC1B = 0;
+    CCP2CONbits.DC2B1 = 0;
+    CCP2CONbits.DC2B0 = 0;
+
     T2CONbits.T2CKPS1 = 1;
     T2CONbits.T2CKPS0 = 1;
     T2CONbits.TMR2ON = 1;
+    PR2 = 250;
+    PIR1bits.TMR2IF = 0;
 
     while (!PIR1bits.TMR2IF);
     PIR1bits.TMR2IF = 0;

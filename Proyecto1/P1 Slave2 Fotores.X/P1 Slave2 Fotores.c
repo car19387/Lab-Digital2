@@ -65,7 +65,13 @@ void main(void) {
     // Loop principal
     //**************************************************************************
     while(1){
-        if(ADCON0bits.GO == 0){         // Si la bandera del ADC se baj?
+        if(ADCON0bits.GO == 0){         // Si la bandera del ADC se bajó
+            if (ADCON0bits.CHS == 0){   // Si está en el canal 0
+                ADCON0bits.CHS = 1;     // Entonces pasa al canal 1
+            }  
+            else {                      // Si no está en el canal 0
+                ADCON0bits.CHS = 0;     // Entonces pasa al canal 0
+            } 
             __delay_us(50);             //Delay para sample and hold
             ADCON0bits.GO = 1;          //Levantar bandera para conversi?n ADC
         }
@@ -106,11 +112,17 @@ void __interrupt()isr(void){
         PIR1bits.SSPIF = 0;    
     }
     
-    if (PIR1bits.ADIF) {                // Interrupci?n del ADC
-        Foto = ADRESH;                  // Guardar valor de conversi?n en PORTB
-        Foto = (Foto);
-        CCPR1L = Foto;                  // Valores v?lidos entre 128 y 250
-        PIR1bits.ADIF = 0;              // Limpiar la bandera de ADC
+    if (PIR1bits.ADIF) {                // Interrupción del ADC
+        if(ADCON0bits.CHS == 0) {       // Si está en el canal 0
+            Foto = ADRESH;              // Guardar valor de conversión
+            Foto = (Foto);              // Conversion del valor
+            CCPR1L = Foto;              // Se despliegan en el CCP1
+        }
+        else {                          // Si está en el canal 1
+            PORTB = ADRESH;             // Guardar valor de conversión en PORTB
+            CCPR2L = (PORTB);           // Se despliega en el CCP2
+        }
+    PIR1bits.ADIF = 0;                  // Limpiar la bandera de ADC
     }
 }
 
@@ -119,10 +131,10 @@ void __interrupt()isr(void){
 //******************************************************************************
 void setup() {
     // Configuración de Puertos
-    ANSEL = 0x01;               // RA0 como entrada analógica
+    ANSEL = 0x03;               // RA0 y RA1 como entrada analógica
     ANSELH = 0x00;
     
-    TRISA = 0x01;               // Fotoresistencua en RA0
+    TRISA = 0x03;               // Fotoresistencua en RA0
     TRISB = 0x00;
     TRISC = 0x08;               // Señal de reloj
     TRISD = 0x00; 
@@ -147,22 +159,26 @@ void setup() {
     ADCON0bits.CHS = 0;         // Canal 0 selecionado     
     ADCON0bits.ADON = 1;        // Enecender módulo ADC
     __delay_us(50); 
-    ADCON0bits.GO = 1;          // Iniciar conversión ADC
     
     // Configurar TMR2
-    PR2 = 250;                  // Valor inicial de PR2
-    CCP1CONbits.P1M = 0;        // PWM bits de salida
-    CCP1CONbits.CCP1M = 0b00001100; // Se habilita PWM    
-    CCPR1L = 0x0F; 
+    CCP1CONbits.P1M = 0;        // PWM single output
+    CCP1CONbits.CCP1M = 0b1100; // Se selecciona el modo PWM de CCP1  
+    CCP2CONbits.CCP2M = 0b1100; // Se selecciona el modo PWM de CCP2
+    
+    CCPR1L = 0x0F;              // Valor inicial de CCPR1L
+    CCPR2L = 0x0F;              // Valor inicial de CCPR2L
     CCP1CONbits.DC1B = 0;       // Bits menos significativos del Duty Cycle
-
-    PIR1bits.TMR2IF = 0;        // Se limpia la bandera
+    CCP2CONbits.DC2B1 = 0;
+    CCP2CONbits.DC2B0 = 0;
+    
     T2CONbits.T2CKPS1 = 1;      // Prescaler de 16
     T2CONbits.T2CKPS0 = 1;
     T2CONbits.TMR2ON = 1;       // Se enciende el TMR2
+    PR2 = 250;                  // Valor inicial de PR2
+    PIR1bits.TMR2IF = 0;        // Se limpia la bandera
     
     while (!PIR1bits.TMR2IF);   // Se espera una interrupci?n
-    PIR1bits.TMR2IF = 0;
+    PIR1bits.TMR2IF = 0;        // Se limpia la bandera
   
     // Configuracion de interrupciones
     INTCONbits.GIE = 1;         // Se habilitan las interrupciones globales

@@ -2676,7 +2676,7 @@ void I2C_Slave_Init(uint8_t address);
 
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
-#pragma config PWRTE = OFF
+#pragma config PWRTE = ON
 #pragma config MCLRE = OFF
 #pragma config CP = OFF
 #pragma config CPD = OFF
@@ -2689,8 +2689,8 @@ void I2C_Slave_Init(uint8_t address);
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
 # 47 "P1 Slave1 TCS230.c"
-uint8_t CC = 10;
-uint8_t Sp = 20;
+uint8_t cc = 0;
+uint8_t spr = 0;
 uint8_t b;
 uint8_t z;
 
@@ -2718,6 +2718,17 @@ void main(void) {
 
 
 void __attribute__((picinterrupt((""))))isr(void){
+    if(INTCONbits.RBIF){
+        if(PORTBbits.RB0){
+            cc = cc++;
+        }
+
+        if(PORTBbits.RB1){
+            spr = spr++;
+        }
+        INTCONbits.RBIF = 0;
+    }
+
     if(PIR1bits.SSPIF == 1){
         SSPCONbits.CKP = 0;
 
@@ -2741,10 +2752,10 @@ void __attribute__((picinterrupt((""))))isr(void){
             z = SSPBUF;
             BF = 0;
             if(b == 0){
-                SSPBUF = CC;
+                SSPBUF = cc;
             }
             if(b == 1){
-                SSPBUF = Sp;
+                SSPBUF = spr;
             }
             SSPCONbits.CKP = 1;
             _delay((unsigned long)((250)*(8000000/4000000.0)));
@@ -2759,12 +2770,12 @@ void __attribute__((picinterrupt((""))))isr(void){
 
 void setup(void){
 
-    ANSEL = 0x01;
+    ANSEL = 0x00;
     ANSELH = 0x00;
 
-    TRISA = 0x01;
-    TRISB = 0x00;
-    TRISC = 0x08;
+    TRISA = 0x00;
+    TRISB = 0x03;
+    TRISC = 0x00;
     TRISD = 0x00;
     TRISE = 0x00;
 
@@ -2774,6 +2785,9 @@ void setup(void){
     PORTD = 0x00;
     PORTE = 0x00;
 
+    IOCBbits.IOCB0 = 1;
+    IOCBbits.IOCB1 = 1;
+
 
     OSCCONbits.IRCF = 0b111;
     OSCCONbits.SCS = 1;
@@ -2781,5 +2795,7 @@ void setup(void){
 
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
+    INTCONbits.RBIF = 0;
+    INTCONbits.RBIE = 1;
     I2C_Slave_Init(0x60);
 }

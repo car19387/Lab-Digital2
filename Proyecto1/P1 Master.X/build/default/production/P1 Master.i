@@ -2625,6 +2625,138 @@ typedef int16_t intptr_t;
 typedef uint16_t uintptr_t;
 # 16 "P1 Master.c" 2
 
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 1 3
+
+
+
+# 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__size_t.h" 1 3
+
+
+
+typedef unsigned size_t;
+# 4 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 2 3
+
+# 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__null.h" 1 3
+# 5 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 2 3
+
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdarg.h" 1 3
+
+
+
+
+
+
+typedef void * va_list[1];
+
+#pragma intrinsic(__va_start)
+extern void * __va_start(void);
+
+#pragma intrinsic(__va_arg)
+extern void * __va_arg(void *, ...);
+# 11 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 2 3
+# 43 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 3
+struct __prbuf
+{
+ char * ptr;
+ void (* func)(char);
+};
+# 85 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\conio.h" 1 3
+
+
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\errno.h" 1 3
+# 29 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\errno.h" 3
+extern int errno;
+# 8 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\conio.h" 2 3
+
+
+
+
+extern void init_uart(void);
+
+extern char getch(void);
+extern char getche(void);
+extern void putch(char);
+extern void ungetch(char);
+
+extern __bit kbhit(void);
+
+
+
+extern char * cgets(char *);
+extern void cputs(const char *);
+# 85 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 2 3
+
+
+
+extern int cprintf(char *, ...);
+#pragma printf_check(cprintf)
+
+
+
+extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+# 180 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 3
+#pragma printf_check(vprintf) const
+#pragma printf_check(vsprintf) const
+
+extern char * gets(char *);
+extern int puts(const char *);
+extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+
+#pragma printf_check(printf) const
+#pragma printf_check(sprintf) const
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
+# 17 "P1 Master.c" 2
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\string.h" 1 3
+# 14 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\string.h" 3
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
+# 36 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\string.h" 3
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
+# 18 "P1 Master.c" 2
+
 # 1 "./I2C.h" 1
 # 20 "./I2C.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 1 3
@@ -2666,7 +2798,7 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 
 void I2C_Slave_Init(uint8_t address);
-# 17 "P1 Master.c" 2
+# 19 "P1 Master.c" 2
 
 # 1 "./LCD.h" 1
 # 47 "./LCD.h"
@@ -2687,7 +2819,7 @@ void Lcd_Write_String(char *a);
 void Lcd_Shift_Right(void);
 
 void Lcd_Shift_Left(void);
-# 18 "P1 Master.c" 2
+# 20 "P1 Master.c" 2
 
 
 
@@ -2709,14 +2841,18 @@ void Lcd_Shift_Left(void);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 50 "P1 Master.c"
+# 52 "P1 Master.c"
 uint16_t Luz;
-uint8_t CC;
-uint8_t Sp;
+uint8_t CC ;
+uint8_t Sp ;
 uint8_t Tnk = 5;
 uint8_t Unidad;
 uint8_t Decena;
 uint8_t Centena;
+unsigned char opcion;
+unsigned char LZ[2];
+char i;
+uint8_t distancia;
 
 
 
@@ -2786,6 +2922,8 @@ void main(void) {
 
         Luz = Luz/2.57;
         Decimal(Luz);
+        LZ[0] = Decena;
+        LZ[1] = Unidad;
         Lcd_Write_Char(Decena);
         Lcd_Write_Char(Unidad);
         Lcd_Write_String("%");
@@ -2803,6 +2941,7 @@ void main(void) {
         Lcd_Write_Char(Centena);
         Lcd_Write_Char(Decena);
         Lcd_Write_Char(Unidad);
+
     }
     return;
 }
@@ -2812,6 +2951,31 @@ void main(void) {
 
 void __attribute__((picinterrupt((""))))isr(void){
 
+    if (RCIF == 1) {
+        opcion = RCREG;
+        switch (opcion) {
+            case('a'):
+                TXREG = (CC+ 48);
+            break;
+            case('b'):
+                TXREG = (CC + 48);
+            break;
+            case('c'):
+                distancia = (Tnk/7);
+                TXREG = (distancia + 48);
+            break;
+            case('d'):
+                for (i = 0; i < strlen(LZ); i++) {
+                _delay((unsigned long)((100)*(8000000/4000.0)));
+                    if (TXIF == 1) {
+                        TXREG = LZ[i];
+                    }
+                }
+            break;
+        }
+        RCIF = 0;
+    }
+    return;
 }
 
 
@@ -2824,7 +2988,7 @@ void setup(void){
 
     TRISA = 0x00;
     TRISB = 0x00;
-    TRISC = 0x00;
+    TRISC = 0b10000000;
     TRISD = 0x00;
     TRISE = 0x00;
 
@@ -2840,8 +3004,25 @@ void setup(void){
     I2C_Master_Init(100000);
 
 
+    TXSTAbits.TX9 = 0;
+    TXSTAbits.TXEN = 1;
+    TXSTAbits.SYNC = 0;
+    TXSTAbits.BRGH = 1;
+
+    RCSTAbits.SPEN = 1;
+    RCSTAbits.RX9 = 0;
+    RCSTAbits.CREN = 1;
+
+    BAUDCTLbits.BRG16 = 1;
+
+    SPBRG = 207;
+    SPBRGH = 0;
+
+
     INTCONbits.GIE = 1;
-    INTCONbits.PEIE = 0;
+    INTCONbits.PEIE = 1;
+    PIE1bits.RCIE = 1;
+    PIR1bits.RCIF = 0;
 }
 
 
